@@ -21,6 +21,9 @@
             --text-light: #666;
             --red: #F44336;
             --yellow: #FFC107;
+            --blue: #0724a2;
+            --green-blue: #1bab9a;
+
         }
 
         body {
@@ -247,7 +250,7 @@
             width: 100%;
             height: 15px;
             border-radius: 10px;
-            background: linear-gradient(to right, var(--red), var(--yellow), var(--primary-green));
+            background: linear-gradient(to right, var(--red), var(--green-blue), var(--blue));
             outline: none;
             -webkit-appearance: none;
             margin: 2rem 0;
@@ -591,12 +594,12 @@
                         <small data-lang-id="Tidak Layak" data-lang-en="Not Suitable">Tidak Layak</small>
                     </div>
                     <div class="ph-label">
-                        <div class="color-indicator" style="background: #FFC107;"></div>
+                        <div class="color-indicator" style="background: #1bab9a;"></div>
                         <span data-lang-id="pH 5-6" data-lang-en="pH 5-6">pH 5-6</span>
                         <small data-lang-id="Kurang Segar" data-lang-en="Less Fresh">Kurang Segar</small>
                     </div>
                     <div class="ph-label">
-                        <div class="color-indicator" style="background: #4CAF50;"></div>
+                        <div class="color-indicator" style="background: #0724a2;"></div>
                         <span data-lang-id="pH 6-7" data-lang-en="pH 6-7">pH 6-7</span>
                         <small data-lang-id="Segar" data-lang-en="Fresh">Segar</small>
                     </div>
@@ -606,7 +609,7 @@
 
                 <div class="ph-display">
                     <div class="ph-value">pH <span id="phValue">7.0</span></div>
-                    <div class="status-text" id="statusText" style="color: #4CAF50;">
+                    <div class="status-text" id="statusText" style="color: #0724a2;">
                         <span data-lang-id="SEGAR - Aman Dikonsumsi" data-lang-en="FRESH - Safe to Consume">SEGAR - Aman Dikonsumsi</span>
                     </div>
                 </div>
@@ -678,42 +681,42 @@
         </p>
 
         <div class="team-section">
-                <h2 class="team-title" data-en="Meet The Team Behind" data-id="Kenali Tim di Balik">Kenali Tim di Balik</h2>
+                <h2 class="team-title" data-lang-en="Meet The Team Behind" data-lang-id="Kenali Tim di Balik">Kenali Tim di Balik</h2>
                 <div class="team-grid">
                     <div class="team-member">
                         <div class="team-photo">
                             <span><img src="najma.png" alt=""></span>
                         </div>
                         <div class="team-name">Najma</div>
-                        <div class="team-role" data-en="Research Scientist" data-id="Ilmuwan Riset">Ilmuwan Riset</div>
+                        <div class="team-role" data-lang-en="Research Scientist" data-lang-id="Ilmuwan Riset">Ilmuwan Riset</div>
                     </div>
                     <div class="team-member">
                         <div class="team-photo">
                             <span><img src="zakia.png" alt=""></span>
                         </div>
                         <div class="team-name">Zakia</div>
-                        <div class="team-role" data-en="Research Scientist" data-id="Ilmuwan Riset">Ilmuwan Riset</div>
+                        <div class="team-role" data-lang-en="Research Scientist" data-lang-id="Ilmuwan Riset">Ilmuwan Riset</div>
                     </div>
                     <div class="team-member">
                         <div class="team-photo">
                             <span><img src="bintang.png" alt=""></span>
                         </div>
                         <div class="team-name">Bintang</div>
-                        <div class="team-role" data-en="Systems Engineer" data-id="Insinyur Sistem">Insinyur Sistem</div>
+                        <div class="team-role" data-lang-en="Systems Engineer" data-lang-id="Insinyur Sistem">Insinyur Sistem</div>
                     </div>
                     <div class="team-member">
                         <div class="team-photo">
                             <span><img src="fattaah.png" alt=""></span>
                         </div>
                         <div class="team-name">Fattaah</div>
-                        <div class="team-role" data-en="Data Analyst" data-id="Analis Data">Analis Data</div>
+                        <div class="team-role" data-lang-en="Data Analyst" data-lang-id="Analis Data">Analis Data</div>
                     </div>
                     <div class="team-member">
                         <div class="team-photo">
                             <span><img src="nadine.png" alt=""></span>
                         </div>
                         <div class="team-name">Nadine</div>
-                        <div class="team-role" data-en="System Engineer" data-id="Insinyur Sistem">Spesialis Teknologi</div>
+                        <div class="team-role" data-lang-en="System Engineer" data-lang-id="Insinyur Sistem">Spesialis Teknologi</div>
                     </div>
                 </div>
             </div>
@@ -806,10 +809,10 @@ function toggleLanguage() {
                 statusText.style.color = '#4CAF50';
             } else if (ph >= 5) {
                 status = currentLang === 'id' ? 'KURANG SEGAR' : 'LESS FRESH';
-                statusBg = '#FFC107';
+                statusBg = '#1bab9a';
                 colorFilter = 'hue-rotate(45deg) saturate(1.5) brightness(1.1)';
                 statusText.innerHTML = `<span data-lang-id="KURANG SEGAR - Periksa Kondisi" data-lang-en="LESS FRESH - Check Condition">${currentLang === 'id' ? 'KURANG SEGAR - Periksa Kondisi' : 'LESS FRESH - Check Condition'}</span>`;
-                statusText.style.color = '#FFC107';
+                statusText.style.color = '#1bab9a';
             } else {
                 status = currentLang === 'id' ? 'TIDAK LAYAK' : 'NOT SUITABLE';
                 statusBg = '#F44336';
