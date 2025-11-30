@@ -588,27 +588,29 @@
             <div class="ph-slider-container">
                 <div class="ph-labels">
 
+
                     <div class="ph-label">
                         <div class="color-indicator" style="background: #F44336;"></div>
-                        <span data-lang-id="pH < 5" data-lang-en="pH < 5">pH < 5</span>
-                        <small data-lang-id="Tidak Layak" data-lang-en="Not Suitable">Tidak Layak</small>
+                        <span data-lang-id="pH 6-7" data-lang-en="pH 6-7">pH 6-7</span>
+                        <small data-lang-id="Segar" data-lang-en="Fresh">Segar</small>
                     </div>
                     <div class="ph-label">
                         <div class="color-indicator" style="background: #1bab9a;"></div>
-                        <span data-lang-id="pH 5-6" data-lang-en="pH 5-6">pH 5-6</span>
+                        <span data-lang-id="pH 6-7" data-lang-en="pH 6-7">pH 6-7</span>
                         <small data-lang-id="Kurang Segar" data-lang-en="Less Fresh">Kurang Segar</small>
                     </div>
                     <div class="ph-label">
                         <div class="color-indicator" style="background: #0724a2;"></div>
-                        <span data-lang-id="pH 6-7" data-lang-en="pH 6-7">pH 6-7</span>
-                        <small data-lang-id="Segar" data-lang-en="Fresh">Segar</small>
+                        <span data-lang-id="pH 10-12" data-lang-en="pH 10-12">pH 10-12</span>
+                        <small data-lang-id="Tidak Layak" data-lang-en="Not Suitable">Tidak Layak</small>
                     </div>
+
                 </div>
 
-                <input type="range" min="3" max="7" value="7" step="0.1" class="slider" id="phSlider">
+                <input type="range" min="6" max="12" value="6" step="0.1" class="slider" id="phSlider">
 
                 <div class="ph-display">
-                    <div class="ph-value">pH <span id="phValue">7.0</span></div>
+                    <div class="ph-value">pH <span id="phValue">6</span></div>
                     <div class="status-text" id="statusText" style="color: #0724a2;">
                         <span data-lang-id="SEGAR - Aman Dikonsumsi" data-lang-en="FRESH - Safe to Consume">SEGAR - Aman Dikonsumsi</span>
                     </div>
@@ -801,24 +803,25 @@ function toggleLanguage() {
         function updatePackageColor(ph) {
             let status, statusBg, colorFilter;
             
-            if (ph >= 6) {
+            if (ph <= 7.9) {
                 status = currentLang === 'id' ? 'SEGAR' : 'FRESH';
-                statusBg = '#4CAF50';
+                statusBg = '#F44336';
                 colorFilter = 'hue-rotate(0deg) saturate(1.2)';
                 statusText.innerHTML = `<span data-lang-id="SEGAR - Aman Dikonsumsi" data-lang-en="FRESH - Safe to Consume">${currentLang === 'id' ? 'SEGAR - Aman Dikonsumsi' : 'FRESH - Safe to Consume'}</span>`;
-                statusText.style.color = '#4CAF50';
-            } else if (ph >= 5) {
+                statusText.style.color = '#F44336';
+            } else if (ph >= 10) {
+                status = currentLang === 'id' ? 'TIDAK LAYAK' : 'NOT SUITABLE';
+                statusBg = '#0724a2';
+                colorFilter = 'hue-rotate(240deg) saturate(1.5) brightness(0.9)';
+                statusText.innerHTML = `<span data-lang-id="TIDAK LAYAK - Jangan Konsumsi" data-lang-en="NOT SUITABLE - Do Not Consume">${currentLang === 'id' ? 'TIDAK LAYAK - Jangan Konsumsi' : 'NOT SUITABLE - Do Not Consume'}</span>`;
+                statusText.style.color = '#0724a2';
+                
+            } else {
                 status = currentLang === 'id' ? 'KURANG SEGAR' : 'LESS FRESH';
                 statusBg = '#1bab9a';
-                colorFilter = 'hue-rotate(45deg) saturate(1.5) brightness(1.1)';
+                colorFilter = 'hue-rotate(150deg) saturate(1.5) brightness(1.1)';
                 statusText.innerHTML = `<span data-lang-id="KURANG SEGAR - Periksa Kondisi" data-lang-en="LESS FRESH - Check Condition">${currentLang === 'id' ? 'KURANG SEGAR - Periksa Kondisi' : 'LESS FRESH - Check Condition'}</span>`;
                 statusText.style.color = '#1bab9a';
-            } else {
-                status = currentLang === 'id' ? 'TIDAK LAYAK' : 'NOT SUITABLE';
-                statusBg = '#F44336';
-                colorFilter = 'hue-rotate(320deg) saturate(1.5) brightness(0.9)';
-                statusText.innerHTML = `<span data-lang-id="TIDAK LAYAK - Jangan Konsumsi" data-lang-en="NOT SUITABLE - Do Not Consume">${currentLang === 'id' ? 'TIDAK LAYAK - Jangan Konsumsi' : 'NOT SUITABLE - Do Not Consume'}</span>`;
-                statusText.style.color = '#F44336';
             }
 
             packageImage.style.filter = colorFilter;
