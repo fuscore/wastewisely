@@ -805,10 +805,10 @@ function toggleLanguage() {
             
             if (ph <= 7.9) {
                 status = currentLang === 'id' ? 'SEGAR' : 'FRESH';
-                statusBg = '#F44336';
+                statusBg = '#4CAF50';
                 colorFilter = 'hue-rotate(0deg) saturate(1.2)';
                 statusText.innerHTML = `<span data-lang-id="SEGAR - Aman Dikonsumsi" data-lang-en="FRESH - Safe to Consume">${currentLang === 'id' ? 'SEGAR - Aman Dikonsumsi' : 'FRESH - Safe to Consume'}</span>`;
-                statusText.style.color = '#F44336';
+                statusText.style.color = '#4CAF50';
             } else if (ph >= 10) {
                 status = currentLang === 'id' ? 'TIDAK LAYAK' : 'NOT SUITABLE';
                 statusBg = '#0724a2';
