@@ -1325,6 +1325,12 @@
             .stat-value {
                 font-size: 1.8rem;
             }
+
+            /* Ensure content is visible on mobile even before AOS loads */
+            [data-aos] {
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
     </style>
 </head>
@@ -1857,7 +1863,7 @@
 
             <div class="footer-section">
                 <h3 data-lang-id="Kontak" data-lang-en="Contact">Kontak</h3>
-                <a href="/cdn-cgi/l/email-protection#42243731212d30273627232f02252f232b2e6c212d2f">📧 <span class="__cf_email__" data-cfemail="55332026363a273021303438153238343c397b363a38">[email&#160;protected]</span></a>
+                <a href="mailto:fuscoreteam@gmail.com">📧 fuscoreteam@gmail.com</a>
                 <a href="https://wa.me/6285786611091">📞 +62 857-8661-1091</a>
                 <a href="#" data-lang-id="📍 Semarang, Jawa Tengah, Indonesia" data-lang-en="📍 Jakarta, Indonesia">📍 Semarang, Central Java, Indonesia</a>
             </div>
@@ -1894,15 +1900,22 @@
     </footer>
 
     <!-- AOS Library -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+        // Initialize AOS with mobile check
+        if (window.innerWidth > 768) {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+        } else {
+            // Disable AOS on mobile to prevent content hiding issues
+            AOS.init({
+                disable: true
+            });
+        }
 
         // Hamburger Menu
         const hamburger = document.getElementById('hamburger');
