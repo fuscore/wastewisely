@@ -1245,18 +1245,18 @@
             <div class="step" data-aos="zoom-in" data-aos-delay="100">
                 <div class="step-number">1</div>
                 <h3 data-lang-id="Pengumpulan Bahan" data-lang-en="Material Collection">Pengumpulan Bahan</h3>
-                <p data-lang-id="Mengumpulkan kulit pisang dari pasar dan rumah tangga" 
-                   data-lang-en="Collecting banana peels from markets and households">
-                    Mengumpulkan kulit pisang dari pasar dan rumah tangga
+                <p data-lang-id="Mengumpulkan pati beras dan kulit pisang dari sektor industri makanan" 
+                   data-lang-en="Collecting rice starch and banana peels from the food industry sector">
+                    Mengumpulkan pati beras dan kulit pisang dari sektor industri makanan
                 </p>
             </div>
 
             <div class="step" data-aos="zoom-in" data-aos-delay="200">
                 <div class="step-number">2</div>
                 <h3 data-lang-id="Proses Bioplastik" data-lang-en="Bioplastic Process">Proses Bioplastik</h3>
-                <p data-lang-id="Mengolah kulit pisang menjadi bioplastik berkualitas tinggi" 
-                   data-lang-en="Processing banana peels into high-quality bioplastic">
-                    Mengolah kulit pisang menjadi bioplastik berkualitas tinggi
+                <p data-lang-id="Mengolah pati beras dan kulit pisang menjadi bioplastik berkualitas tinggi" 
+                   data-lang-en="Processing rice starch and banana peels into high-quality bioplastic">
+                    Mengolah pati beras dan kulit pisang menjadi bioplastik berkualitas tinggi
                 </p>
             </div>
 
@@ -1519,8 +1519,8 @@
                         </p>
                         <div class="timeline-science">
                             <strong data-lang-id="⚗️ Proses kimia:" data-lang-en="⚗️ Chemical process:">⚗️ Proses kimia:</strong>
-                            <p data-lang-id="Bioplastik → Biomassa + <span class='chemical-formula'>H₂O</span> + <span class='chemical-formula'>CO₂</span>" 
-                               data-lang-en="Bioplastic → Biomass + <span class='chemical-formula'>H₂O</span> + <span class='chemical-formula'>CO₂</span>">
+                            <p data-lang-id="Bioplastik → Biomassa + H₂O + CO₂" 
+                               data-lang-en="Bioplastic → Biomass + H₂O + CO₂">
                                 Bioplastik → Biomassa + <span class="chemical-formula">H₂O</span> + <span class="chemical-formula">CO₂</span>
                             </p>
                             <p data-lang-id="Hasil akhir berupa humus kaya nutrisi yang mengandung nitrogen (N), fosfor (P), dan kalium (K) - nutrisi esensial untuk pertumbuhan tanaman. Tidak ada mikroplastik yang tertinggal dalam tanah." 
@@ -1653,7 +1653,7 @@
 
             <div class="footer-section">
                 <h3 data-lang-id="Kontak" data-lang-en="Contact">Kontak</h3>
-                <a href="mailto:fuscoreteam@gmail.com">📧 fuscoreteam@gmail.com</a>
+                <a href="/cdn-cgi/l/email-protection#bddbc8ceded2cfd8c9d8dcd0fddad0dcd4d193ded2d0">📧 <span class="__cf_email__" data-cfemail="33554640505c41564756525e73545e525a5f1d505c5e">[email&#160;protected]</span></a>
                 <a href="https://wa.me/6285786611091">📞 +62 857-8661-1091</a>
                 <a href="#" data-lang-id="📍 Semarang, Jawa Tengah, Indonesia" data-lang-en="📍 Jakarta, Indonesia">📍 Semarang, Central Java, Indonesia</a>
             </div>
@@ -1690,7 +1690,7 @@
     </footer>
 
     <!-- AOS Library -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
         // Initialize AOS
@@ -1750,14 +1750,35 @@
                 } else if (el.tagName === 'SPAN' && el.parentElement.tagName === 'BUTTON') {
                     el.textContent = text;
                 } else {
-                    // Check if element has only text content (no child elements except translatable ones)
-                    const hasOnlyTextOrTranslatable = Array.from(el.childNodes).every(node => 
-                        node.nodeType === Node.TEXT_NODE || 
-                        (node.nodeType === Node.ELEMENT_NODE && node.hasAttribute('data-lang-id'))
-                    );
+                    // Check if element has child elements with class 'chemical-formula'
+                    const hasChemicalFormula = el.querySelector('.chemical-formula');
                     
-                    if (hasOnlyTextOrTranslatable) {
-                        el.textContent = text;
+                    if (hasChemicalFormula) {
+                        // For elements with chemical formulas, preserve the HTML structure
+                        const parts = text.split(/(<span class='chemical-formula'>.*?<\/span>)/gi);
+                        el.innerHTML = '';
+                        parts.forEach(part => {
+                            if (part.includes('chemical-formula')) {
+                                // Extract the content between tags
+                                const match = part.match(/>(.+?)</);
+                                const span = document.createElement('span');
+                                span.className = 'chemical-formula';
+                                span.textContent = match ? match[1] : '';
+                                el.appendChild(span);
+                            } else if (part.trim()) {
+                                el.appendChild(document.createTextNode(part));
+                            }
+                        });
+                    } else {
+                        // Check if element has only text content (no child elements except translatable ones)
+                        const hasOnlyTextOrTranslatable = Array.from(el.childNodes).every(node => 
+                            node.nodeType === Node.TEXT_NODE || 
+                            (node.nodeType === Node.ELEMENT_NODE && node.hasAttribute('data-lang-id'))
+                        );
+                        
+                        if (hasOnlyTextOrTranslatable) {
+                            el.textContent = text;
+                        }
                     }
                 }
             });
@@ -1886,9 +1907,18 @@
             });
         });
 
-        // Initialize on page load
-        updatePackageColor(parseFloat(phSlider.value));
-        updatePhGuide(parseFloat(phSlider.value));
+        // Scroll to home/hero section when page loads
+        window.addEventListener('load', function() {
+            // Remove any hash from URL
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+            // Scroll to top (home section)
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant'
+            });
+        });
     </script>
 </body>
 </html>
