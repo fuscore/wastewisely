@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+2<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -1334,7 +1334,7 @@
 
                 <div class="dashboard-card" data-aos="flip-left" data-aos-delay="300">
                     <h3>🧪 <span data-lang-id="pH Level" data-lang-en="pH Level">pH Level</span></h3>
-                    <div class="metric-value">7.2</div>
+                    <div class="metric-value">6.5</div>
                     <div class="metric-label" data-lang-id="Produk dalam kondisi segar" 
                          data-lang-en="Product in fresh condition">
                         Produk dalam kondisi segar
@@ -1379,7 +1379,7 @@
                         <div style="font-size: 0.8rem;" data-lang-id="Hijau" data-lang-en="Green">Hijau</div>
                     </div>
                     <div class="ph-marker">
-                        <div id="phMarker3">10</div>
+                        <div id="phMarker3">12</div>
                         <div style="font-size: 0.8rem;" data-lang-id="Biru" data-lang-en="Blue">Biru</div>
                     </div>
                 </div>
@@ -1799,15 +1799,15 @@
         function updatePackageColor(ph) {
             let status, statusBg, colorFilter, statusTextId, statusTextEn, phRange;
             
-            if (ph <= 7) {
-                // MERAH - Segar (pH 6-7)
+            if (ph < 8) {
+                // MERAH - Segar (pH 6-7.9)
                 status = currentLang === 'id' ? 'SEGAR' : 'FRESH';
                 statusBg = '#F44336';
                 colorFilter = 'hue-rotate(0deg) saturate(1.2)';
                 statusTextId = 'SEGAR - Aman Dikonsumsi';
                 statusTextEn = 'FRESH - Safe to Consume';
                 statusText.style.color = '#F44336';
-                phRange = 'pH 6-7';
+                phRange = 'pH 6-7.9';
                 document.getElementById('phRangeText').style.color = '#F44336';
             } else if (ph >= 10) {
                 // BIRU - Tidak Layak (pH 10-12)
@@ -1820,14 +1820,14 @@
                 phRange = 'pH 10-12';
                 document.getElementById('phRangeText').style.color = '#0724a2';
             } else {
-                // HIJAU - Kurang Segar (pH 8-9)
+                // HIJAU - Kurang Segar (pH 8.0-9.9)
                 status = currentLang === 'id' ? 'KURANG SEGAR' : 'LESS FRESH';
                 statusBg = '#1bab9a';
                 colorFilter = 'hue-rotate(150deg) saturate(1.5) brightness(1.1)';
                 statusTextId = 'KURANG SEGAR - Periksa Kondisi';
                 statusTextEn = 'LESS FRESH - Check Condition';
                 statusText.style.color = '#1bab9a';
-                phRange = 'pH 8-9';
+                phRange = 'pH 8.0-9.9';
                 document.getElementById('phRangeText').style.color = '#1bab9a';
             }
 
@@ -1857,10 +1857,10 @@
 
         // Function to update pH guide markers based on slider position
         function updatePhGuide(currentPh) {
-            // Fixed pH markers at 6, 8, 10 only (3 markers)
+            // Fixed pH markers at 6, 8, 12 only (3 markers)
             const marker1 = 6;
             const marker2 = 8;
-            const marker3 = 10;
+            const marker3 = 12;
             
             // Update the guide markers
             document.getElementById('phMarker1').textContent = marker1;
