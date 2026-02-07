@@ -1406,7 +1406,7 @@
                     </p>
                     
                     <div class="package-container" id="packagePreview" style="width: 250px; height: 300px; margin: 2rem auto;">
-                        <div class="status-badge" id="previewStatus">SEGAR</div>
+                        <div class="status-badge" id="previewStatus" style="background: #F44336;">SEGAR</div>
                         <div class="package-mockup" style="width: 150px; height: 150px;">
                             <img src="produk.png" 
                                  alt="WasteWise Package Preview">
@@ -1907,17 +1907,30 @@
             });
         });
 
-        // Scroll to home/hero section when page loads
+        // Scroll to home/hero section when page loads or refreshes
         window.addEventListener('load', function() {
             // Remove any hash from URL
             if (window.location.hash) {
                 history.replaceState(null, null, window.location.pathname);
             }
-            // Scroll to top (home section)
-            window.scrollTo({
-                top: 0,
-                behavior: 'instant'
-            });
+            // Always scroll to top (home section) on page load/refresh
+            setTimeout(function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'instant'
+                });
+            }, 10);
+        });
+
+        // Also handle browser back/forward navigation
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                // Page was restored from cache (bfcache)
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'instant'
+                });
+            }
         });
     </script>
 </body>
