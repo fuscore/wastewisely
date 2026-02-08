@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+2<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -1408,7 +1408,7 @@
                     <div class="package-container" id="packagePreview" style="width: 250px; height: 300px; margin: 2rem auto;">
                         <div class="status-badge" id="previewStatus" style="background: #F44336;">SEGAR</div>
                         <div class="package-mockup" style="width: 150px; height: 150px;">
-                            <img src="produk.png" 
+                            <img id="packageImage" src="produk.png" 
                                  alt="WasteWise Package Preview">
                         </div>
                     </div>
@@ -1854,6 +1854,10 @@
             updatePackageColor(ph);
             updatePhGuide(ph);
         });
+
+        // Initialize package color on page load
+        updatePackageColor(parseFloat(phSlider.value));
+        updatePhGuide(parseFloat(phSlider.value));
 
         // Function to update pH guide markers based on slider position
         function updatePhGuide(currentPh) {
